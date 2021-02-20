@@ -1,0 +1,322 @@
+﻿<!DOCTYPE html>
+<html lang="en-za">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>@ViewData["Title"] - Mac Slopes Tradings</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+        <link href="~/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+        <link href="~/lib/nowui/css/now-ui-kit.min98f3.css" rel="stylesheet" />
+        <link href="~/lib/toastr/toastr.min.css" rel="stylesheet" />
+        <link href="~/lib/hexagoncss/css/hexagons.css" rel="stylesheet" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="~/lib/nowui/css/now-ui-kit.min98f3.css" />
+        <link rel="stylesheet" href="~/lib/hexagoncss/css/hexagons.min.css" />
+    </environment>
+    @RenderSection("Styles",required:false)
+</head>
+<body class="blog-posts sidebar-collapse">
+    @await Component.InvokeAsync("ClientNotifications.Notify")
+    <nav class="navbar navbar-expand-lg fixed-top bg-primary">
+        <div class="container">
+            <div class="navbar-translate">
+                <a class="navbar-brand" asp-action="Index" asp-controller="Home">Mac Slopes Tradings</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-bar top-bar"></span>
+                    <span class="navbar-toggler-bar middle-bar"></span>
+                    <span class="navbar-toggler-bar bottom-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" data-color="red">
+                <ul class="navbar-nav ml-auto" id="ceva">
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="About" asp-controller="Home" asp-area="">
+                            <i class="now-ui-icons travel_info"></i>&nbsp;&nbsp;
+                            About Us
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="Contact" asp-controller="Home" asp-area="">
+                            <i class="now-ui-icons location_world"></i>&nbsp;&nbsp;
+                            Contact Us
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="Index" asp-controller="Gallery" asp-area="">
+                            <i class="now-ui-icons media-1_album"></i>&nbsp;&nbsp;
+                            Gallery
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="Index" asp-controller="Blog" asp-area="">
+                            <i class="now-ui-icons education_agenda-bookmark"></i>&nbsp;&nbsp;
+                            Blog
+                        </a>
+                    </li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a asp-action="Index" asp-controller="Admin" class="nav-link">
+                                    <i class="now-ui-icons ui-1_settings-gear-63"></i>&nbsp;&nbsp;
+                                    Dashboard
+                                </a>
+                            </li>
+                        }
+                        <li class="dropdown nav-item">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="now-ui-icons users_circle-08"></i>&nbsp;&nbsp;
+                                Hello @User.Identity.Name
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" asp-action="Index" asp-controller="Manage">
+                                    <i class="now-ui-icons users_single-02"></i>&nbsp;&nbsp;Manage Account
+                                </a>
+                                <a class="dropdown-item" asp-action="ChangePassword" asp-controller="Manage">
+                                    <i class="now-ui-icons ui-1_lock-circle-open"></i>&nbsp;&nbsp;Change Password
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <form asp-action="SignOut" asp-controller="Account" method="post">
+                                    <button class="dropdown-item"><i class="now-ui-icons sport_user-run"></i>&nbsp;&nbsp;Sign Out</button>
+                                </form>
+                            </div>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="dropdown nav-item">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="now-ui-icons users_single-02"></i>&nbsp;&nbsp;
+                                Account
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" asp-action="Login" asp-controller="Account">
+                                    <i class="now-ui-icons users_circle-08"></i>&nbsp;&nbsp;Log In
+                                </a>
+                                <a class="dropdown-item" asp-action="ForgotPassword" asp-controller="Account">
+                                    <i class="now-ui-icons ui-1_lock-circle-open"></i>&nbsp;&nbsp;Forgot Password
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" asp-action="Register" asp-controller="Account">
+                                    <i class="now-ui-icons business_bulb-63"></i>&nbsp;&nbsp;Register Your Account
+                                </a>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div>
+        @RenderBody()
+    </div>
+
+    <div class="subscribe-line subscribe-line-image" data-parallax="true">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mx-auto">
+                    <div class="text-center">
+                        <h4 class="title">Why Don't You Holla At Us On Social Media</h4>
+                        <h6 class="category mb-3">We Would Really Love To Hear from You on Our Social Media Pages</h6>
+                        <p class="description">
+                            <a href="https://www.facebook.com/DaemonGriffons" class="wow bounceInUp" data-wow-delay="0.8s" data-toggle="tooltip" data-placement="bottom" title="Catch Us On Facebook">
+                                <span class="hb hb-sm spin spin-icon">
+                                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                                </span>
+                            </a>
+                            <a href="https://www.twitter.com/DaemonGriffons" class="wow bounceInUp" data-wow-delay="1.2s" data-toggle="tooltip" data-placement="bottom" title="Catch Us On Twitter">
+                                <span class="hb hb-sm spin spin-icon">
+                                    <i class="fa fa-twitter" aria-hidden="true"></i>
+                                </span>
+                            </a>
+                            @*Change this Link to Your Linked In Profile*@
+                            <a href="https://www.linkedin.com/DaemonGriffons" class="wow bounceInUp" data-wow-delay="1.6s" data-toggle="tooltip" data-placement="bottom" title="Catch Us On LinkedIn">
+                                <span class="hb hb-sm spin spin-icon">
+                                    <i class="fa fa-linkedin" aria-hidden="true"></i>
+                                </span>
+                            </a>
+                            <a href="https://www.instagram.com/DaemonGriffons/" class="wow bounceInUp" data-wow-delay="2s" data-toggle="tooltip" data-placement="bottom" title="Catch Us On Instagram">
+                                <span class="hb hb-sm spin spin-icon">
+                                    <i class="fa fa-instagram" aria-hidden="true"></i>
+                                </span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="footer footer-white footer-big">
+        <div class="container">
+
+            <div class="content">
+                <div class="row justify-content-center">
+
+                    <div class="col-md-3">
+                        <a href="#pablo"><h5>Mac Slopes Trading</h5></a>
+                        <p>Probably the best UI Kit in the world! We know you've been waiting for it, so don't be shy!</p>
+                    </div>
+                    <div class="col-md-2">
+                        <h5>About</h5>
+                        <ul class="links-vertical">
+                            <li>
+                                <a href="#pablo">
+                                    Blog
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#pablo">
+                                    About Us
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#pablo">
+                                    Presentation
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#pablo">
+                                    Contact Us
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-2">
+                        <h5>Market</h5>
+                        <ul class="links-vertical">
+                            <li>
+                                <a href="#pablo">
+                                    Sales FAQ
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#pablo">
+                                    How to Register
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#pablo">
+                                    Sell Goods
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#pablo">
+                                    Receive Payment
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#pablo">
+                                    Transactions Issues
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-2">
+                        <h5>Legal</h5>
+                        <ul class="links-vertical">
+                            <li>
+                                <a href="#pablo">
+                                    Transactions FAQ
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#pablo">
+                                    Terms & Conditions
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#pablo">
+                                    Licenses
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <hr />
+
+            <ul class="social-buttons">
+                <li>
+                    <a href="#pablo" class="btn btn-icon btn-neutral btn-twitter btn-lg">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#pablo" class="btn btn-icon btn-neutral btn-facebook btn-lg">
+                        <i class="fa fa-facebook-square"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#pablo" class="btn btn-icon btn-neutral btn-dribbble btn-lg">
+                        <i class="fa fa-dribbble"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#pablo" class="btn btn-icon btn-neutral btn-google btn-lg">
+                        <i class="fa fa-google-plus"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#pablo" class="btn btn-icon btn-neutral btn-youtube btn-lg">
+                        <i class="fa fa-youtube"></i>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="copyright pull-center">
+                Copyright &copy; @DateTime.Now.Year
+                Mac Slopes Trading (Pty) Ltd. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!--     *********   END BIG WHITE FOOTER v2     *********      -->
+
+
+    <environment include="Development">
+        <script src="~/lib/jquery/jquery.js"></script>
+        <script src="~/lib/popper/umd/popper.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/lib/nowui/js/now-ui-kit.min98f3.js"></script>
+        <script src="~/lib/toastr/toastr.min.js"></script>
+        <script src="~/lib/hexagoncss/js/hexagons.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
+        </script>
+        <script src="~/lib/popper/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+        <script src="~/lib/nowui/js/now-ui-kit.min98f3.js"></script>
+        <script src="~/lib/hexagoncss/js/hexagons.min.js"></script>
+    </environment>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

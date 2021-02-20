@@ -1,0 +1,125 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
+for details on configuring this project to bundle and minify static web assets. */
+body {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+
+/* Carousel */
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+.page-header-image{
+    background-image:url(/images/login.jpg) !important;
+}
+.subscribe-line-image{
+    background-image:url(/images/bg23.jpg) !important;
+}
+
+.card-footer{
+    margin-left:15px !important;
+    margin-right:15px !important;
+}
+
+.card-footer .btn{
+    margin-bottom:20px !important;
+}
+
+.form-check label {
+    color: ghostwhite !important;
+}
+.form-check .form-check-sign {
+    color: ghostwhite !important;
+}
+.section-manage {
+    background-image: url('../images/arrows-blur-buttons-2115257.jpg');
+    background-position: center !important;
+}
+.imageresize{
+    max-height: 100px !important;
+    max-width: 100px !important;
+}
+#cke_BlogBody{
+    width: 100% !important;
+}
+
+#categoryFind:hover {
+    text-decoration: none !important;
+    color: #f96332 !important;
+    border:none !important;
+}
+
+#categoryFind:focus {
+    text-decoration: none !important;
+    color: #f96332 !important;
+    border: none !important;
+}
+.input-group > input[type=file] {
+    color: inherit !important;
+    background-color: inherit !important;
+}
+
+.easy-autocomplete-container{
+    top:35px;
+}
+.easy-autocomplete input{
+    width:100% !important;
+}
+
+/* QR code generator */
+#qrCode {
+    margin: 15px;
+}
+
+.card-background{
+    background-image:url(/images/project8.jpg) !important;
+}
+.image-left{
+    background-image:url(/images/bg38.jpg) !important;
+}
+.image-right{
+    background-image:url(/images/bg39.jpg) !important;
+}
+.image-left-bottom{
+    background-image:url(/images/bg24.jpg) !important;
+}
+.section-image{
+    background-image:url(/images/bg23.jpg) !important;
+}
+.PagedList-skipToPrevious.disabled > a {
+    color: #2CA8FF !important;
+    border-color: #2CA8FF !important;
+}
+.PagedList-skipToNext.disabled > a {
+    color: #2CA8FF !important;
+    border-color: #2CA8FF !important;
+}
+.pagination > .page-item.active > a.page-link {
+    background-color: #f96332 !important;
+    border-color: #f96332 !important;
+    color:#ffffff !important;
+}
+.pagination > .page-item > a.page-link {
+    color: #2CA8FF !important;
+    border-color: #2CA8FF !important;
+}
+.card-tasks > .row > .col-md-6 > img.position-relative {
+    top: -40px !important;
+    height: 300px !important;
+}
+
+.blog-img{
+    max-height: 75vh !important;
+}
+
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+}
